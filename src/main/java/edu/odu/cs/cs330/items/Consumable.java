@@ -38,7 +38,9 @@ public class Consumable extends Item {
      */
     public Consumable(Consumable src)
     {
-        // Complete this method
+        super(new String(src.name), src.isStackable());
+        effect = new String(src.effect);
+        uses = src.uses;
     }
 
     /**
@@ -88,8 +90,8 @@ public class Consumable extends Item {
     public void read(Scanner snr)
     {
         super.name = snr.next();
-
-        // Complete this method
+        effect = snr.next();
+        uses = snr.nextInt();
     }
 
     /**
@@ -98,7 +100,7 @@ public class Consumable extends Item {
     @Override
     public Item clone()
     {
-        return null;
+        return new Consumable(this);
     }
 
     /**
@@ -107,6 +109,9 @@ public class Consumable extends Item {
     @Override
     public String toString()
     {
-        return "Implement this function";
+        StringBuilder strBuilder = new StringBuilder(String.format("  Nme: %s%n", this.name));
+        strBuilder.append(String.format("  Eft: %s%n", this.effect))
+                  .append(String.format("  Use: %d%n", this.uses));
+        return strBuilder.toString();
     }
 }
